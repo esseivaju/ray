@@ -63,16 +63,16 @@ class RayTaskError(RayError):
 
         class cls(RayTaskError, self.cause_cls):
             def __init__(self, function_name, traceback_str, cause_cls,
-                         proctitle, pid, host):
+                         proctitle, pid, ip):
                 RayTaskError.__init__(self, function_name, traceback_str,
-                                      cause_cls, proctitle, pid, host)
+                                      cause_cls, proctitle, pid, ip)
 
         name = "RayTaskError({})".format(self.cause_cls.__name__)
         cls.__name__ = name
         cls.__qualname__ = name
 
         return cls(self.function_name, self.traceback_str, self.cause_cls,
-                   self.proctitle, self.pid, self.host)
+                   self.proctitle, self.pid, self.ip)
 
     def __str__(self):
         """Format a RayTaskError as a string."""
